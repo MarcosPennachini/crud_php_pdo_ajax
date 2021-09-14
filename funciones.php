@@ -13,10 +13,10 @@ function subir_imagen()
 
 function obtener_nombre_imagen($idUsuario)
 {
-    require_once('connection.php');
+    require('connection.php');
     $query = "SELECT imagen FROM usuarios WHERE id=:id_usuario";
     $stmt = $connection->prepare($query);
-    $stmt->bindParam('id', $idUsuario, PDO::PARAM_INT);
+    $stmt->bindParam(':id_usuario', $idUsuario, PDO::PARAM_INT);
     $stmt->execute();
     $result = $stmt->fetchAll();
     foreach ($result as $fila) {
@@ -26,10 +26,10 @@ function obtener_nombre_imagen($idUsuario)
 
 function obtener_todos_registros()
 {
-    require_once('connection.php');
+    require('connection.php');
     $query = "SELECT * FROM usuarios";
     $stmt = $connection->prepare($query);
     $stmt->execute();
-    $result = $stmt->fetchAll();
+    $stmt->fetchAll();
     return $stmt->rowCount();
 }
