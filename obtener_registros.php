@@ -1,12 +1,12 @@
 <?php
-require_once('connection.php');
-require_once('funciones.php');
+require_once 'connection.php';
+require_once 'funciones.php';
 
 $query = "SELECT * FROM usuarios ";
 
 if (isset($_POST["search"]["value"])) {
     $query .= 'WHERE nombre LIKE "%' . $_POST["search"]["value"] . '%" ';
-    $query .= 'OR apellidos LIKE "%' . $_POST["search"]["value"] . '%" ';
+    $query .= 'OR apellido LIKE "%' . $_POST["search"]["value"] . '%" ';
 }
 
 if (isset($_POST["order"])) {
@@ -21,7 +21,7 @@ if ($_POST["length"] != -1) {
 
 $stmt = $connection->prepare($query);
 $stmt->execute();
-$result = $stmt->fetchAll();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $filtered_rows = $stmt->rowCount();
 
 $datos = array();
