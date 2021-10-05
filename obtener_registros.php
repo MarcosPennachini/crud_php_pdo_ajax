@@ -5,6 +5,12 @@ include_once 'funciones.php';
 
 $query = "SELECT * FROM usuarios ";
 
+if (isset($_GET['nombre'])) {
+    // var_dump($_GET['nombre']);
+    $nombreFiltrado = $_GET['nombre'];
+    $query .= "WHERE nombre='$nombreFiltrado'";
+}
+
 try {
     $stmt = $connection->prepare($query);
     $stmt->execute();

@@ -103,16 +103,17 @@ $(document).ready(function () {
    *RELOAD DE DATATABLE AL FILTRAR
    */
 
-  $('#formularioSelect').submit(function (e) {
+  $('#formularioFiltro').submit(function (e) {
     e.preventDefault();
-    var selectNombre = $('#selectNombre').val();
+    var selectValue = $('#selectNombre').val();
     $.ajax({
-      method: 'post',
-      url: '../obtener_nombres.php',
-      data: { selectNombre: selectNombre },
+      method: 'get',
+      url: `obtener_registros.php`,
+      data: { nombre: selectValue },
       dataType: 'json',
       success: function (response) {
         console.log(response);
+        datatable.clear().rows.add(response).draw();
       },
     });
   });
