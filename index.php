@@ -74,21 +74,22 @@
                         <input type="text" name="apellido" id="apellido" class="form-control mb-3">
 
                         <label for="mail">Ingrese el mail:</label>
-                        <input type="text" name="mail" id="mail" class="form-control mb-3">
+                        <input type="email" name="email" id="email" class="form-control mb-3">
 
                         <label for="telefono">Ingrese el teléfono:</label>
-                        <input type="email" name="telefono" id="telefono" class="form-control mb-3">
+                        <input type="text" name="telefono" id="telefono" class="form-control mb-3">
 
                         <label for="imagen">Selecciona una imágen:</label>
                         <input type="file" name="imagen_usuario" id="imagenUsuario" class="form-control mb-3">
                         <span id="imagenSubida"></span>
+
+                        <div class="modal-footer">
+                            <input type="hidden" name="id_usuario" id="idUsuario">
+                            <input type="hidden" name="operacion" id="operacion">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
+                        </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="id_usuario" id="idUsuario">
-                    <input type="hidden" name="operacion" id="operacion">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
                 </div>
             </div>
         </div>

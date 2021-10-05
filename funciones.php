@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 
 function subir_imagen()
 {
@@ -13,12 +14,17 @@ function subir_imagen()
 
 function obtener_nombre_imagen($idUsuario)
 {
-    require('connection.php');
-    $query = "SELECT imagen FROM usuarios WHERE id=:id_usuario";
-    $stmt = $connection->prepare($query);
-    $stmt->bindParam(':id_usuario', $idUsuario, PDO::PARAM_INT);
-    $stmt->execute();
-    $result = $stmt->fetchAll();
+    try {
+        require('connection.php');
+        $query = "SELECT imagen FROM usuarios WHERE id=:id_usuario";
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':id_usuario', $idUsuario, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        echo 'Error! ', $e->getMessage();
+    }
+
     foreach ($result as $fila) {
         return $fila['imagen'];
     }
@@ -26,10 +32,14 @@ function obtener_nombre_imagen($idUsuario)
 
 function obtener_todos_registros()
 {
-    require('connection.php');
-    $query = "SELECT * FROM usuarios";
-    $stmt = $connection->prepare($query);
-    $stmt->execute();
-    $stmt->fetchAll();
-    return $stmt->rowCount();
+    try {
+        require('connection.php');
+        $query = "SELECT * FROM usuarios";
+        $stmt = $connection->prepare($query);
+        $stmt->execute();
+        $stmt->fetchAll();
+        return $stmt->rowCount();
+    } catch (PDOException $e) {
+        echo 'Error! ', $e->getMessage();
+    }
 }
