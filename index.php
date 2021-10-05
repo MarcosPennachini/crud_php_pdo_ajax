@@ -22,11 +22,10 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1 class="text-center">CRUD con Php, PDO, Ajax y DataTables</h1>
-
-        <div class="row">
-            <div class="col-2 offset-10">
+    <div class="container mb-4">
+        <h1 class="text-center display-5">CRUD con Php, PDO, Ajax y DataTables</h1>
+        <div class="row my-4 justify-content-end">
+            <div class="col-lg-2 col-xl-2">
                 <div class="text-center">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUsuario" id="btnCrear">
                         <i class="bi bi-plus-circle-fill"> Crear</i>
@@ -36,22 +35,44 @@
         </div>
         <br />
 
-        <div class="table-responsive">
-            <table id="datosUsuario" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Teléfono</th>
-                        <th>Email</th>
-                        <th>Imágen</th>
-                        <th>Fecha creación</th>
-                        <th>Editar</th>
-                        <th>Borrar</th>
-                    </tr>
-                </thead>
-            </table>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5>Filtro</h5>
+                <form class="row row-cols-lg-auto g-3 align-items-center" id="formularioFiltro">
+
+                    <div class="col-6">
+                        <label class="visually-hidden" for="selectNombre">Nombre</label>
+                        <select class="form-select" id="selectNombre">
+                        </select>
+                    </div>
+
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="table table-responsive table-bordered">
+                    <table id="datosUsuario" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Teléfono</th>
+                                <th>Email</th>
+                                <th>Imágen</th>
+                                <th>Fecha creación</th>
+                                <th>Editar</th>
+                                <th>Borrar</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
