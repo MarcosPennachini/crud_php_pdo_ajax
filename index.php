@@ -74,21 +74,22 @@
                         <input type="text" name="apellido" id="apellido" class="form-control mb-3">
 
                         <label for="mail">Ingrese el mail:</label>
-                        <input type="text" name="mail" id="mail" class="form-control mb-3">
+                        <input type="email" name="email" id="email" class="form-control mb-3">
 
                         <label for="telefono">Ingrese el teléfono:</label>
-                        <input type="email" name="telefono" id="telefono" class="form-control mb-3">
+                        <input type="text" name="telefono" id="telefono" class="form-control mb-3">
 
                         <label for="imagen">Selecciona una imágen:</label>
                         <input type="file" name="imagen_usuario" id="imagenUsuario" class="form-control mb-3">
                         <span id="imagenSubida"></span>
+
+                        <div class="modal-footer">
+                            <input type="hidden" name="id_usuario" id="idUsuario">
+                            <input type="hidden" name="operacion" id="operacion">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
+                        </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <input type="hidden" name="id_usuario" id="idUsuario">
-                    <input type="hidden" name="operacion" id="operacion">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
                 </div>
             </div>
         </div>
@@ -96,7 +97,7 @@
 
 
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- JQuery -->
@@ -105,23 +106,8 @@
     <!-- DataTables -->
     <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#datosUsuario').DataTable({
-                "processing": true,
-                "serverSide": true,
-                "order": [],
-                "ajax": {
-                    url: "obtener_registros.php",
-                    type: "POST",
-                },
-                "columnsDefs": [{
-                    "targets": [0, 3, 4],
-                    "orderable": false
-                }]
-            });
-        });
-    </script>
+    <!-- Scripts -->
+    <script type="text/javascript" src="./js/scripts.js"></script>
 </body>
 
 </html>
