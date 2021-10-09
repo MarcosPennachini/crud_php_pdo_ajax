@@ -117,6 +117,30 @@ $(document).ready(function () {
       },
     });
   });
+
+  //EDITAR
+  $('.editar').click(function (e) {
+    e.preventDefault();
+    var idUsuario = $(this).attr('id');
+    $.ajax({
+      url: 'obtener_registro.php',
+      method: 'get',
+      data: { idUsuario: idUsuario },
+      dataType: 'json',
+      success: function (response) {
+        console.log(response);
+        $('#modalUsuario').modal('show');
+        $('#nombre').val(response.nombre);
+        $('#apellido').val(response.apellido);
+        $('#email').val(response.email);
+        $('#telefono').val(response.telefono);
+        $('#imagenSubida').html(response.imagen);
+        $('#modalTitle').text('Editar usuario');
+        $('#action').val('Editar');
+        $('#operacion').val('Editar');
+      },
+    });
+  });
 });
 
 // SUBMIT DE FORMULARIO
@@ -170,17 +194,4 @@ $('#formulario').submit(function (evt) {
       }
     });
   }
-});
-
-//EDITAR
-$('input[name=editar]').click(function (e) {
-  e.preventDefault();
-  var idUsuario = $(this).attr('id');
-  $.ajax({
-    url: 'obtener_registro.php',
-    method: 'post',
-    data: { idUsuario: idUsuario },
-    dataType: 'json',
-    success: function (response) {},
-  });
 });

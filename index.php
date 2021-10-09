@@ -82,7 +82,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Crear Usuario</h5>
+                    <h5 class="modal-title" id="modalTitle">Crear Usuario</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -107,7 +107,7 @@
                         <div class="modal-footer">
                             <input type="hidden" name="id_usuario" id="idUsuario">
                             <input type="hidden" name="operacion" id="operacion">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                             <input type="submit" name="action" id="action" class="btn btn-success" value="Crear">
                         </div>
                     </form>
@@ -128,7 +128,7 @@
     <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
 
     <!-- Scripts -->
-    <script type="text/javascript" src="./js/scripts.js"></script>
+    <script type="text/javascript" src="./js/scripts.js?1.4"></script>
 </body>
 
 </html>
