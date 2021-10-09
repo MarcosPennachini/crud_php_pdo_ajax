@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', 1);
+//ini_set('display_errors', 1);
 include_once 'connection.php';
 include_once 'funciones.php';
 
@@ -17,7 +17,8 @@ try {
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $filtered_rows = $stmt->rowCount();
 } catch (PDOException $e) {
-    echo 'Error! ', $e->getMessage();
+    //echo 'Error! ', $e->getMessage();
+    throw $e->getCode();
 }
 
 
