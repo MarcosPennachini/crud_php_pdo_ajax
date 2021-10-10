@@ -46,3 +46,40 @@ if ($_POST['operacion'] == 'Crear') {
         exit();
     }
 }
+
+if ($_POST['operacion'] == 'Editar') {
+    $imagen = '';
+    if ($_FILES['imagen_usuario'] != '') {
+        $imagen = subir_imagen();
+    } else {
+        $imagen = $_POST['imagen_usuario_oculta'];
+    }
+
+    //CAMPOS DEL FORM
+    $id = $_POST['id_usuario'];
+    $nombreEdit = $_POST['nombre'];
+    $apellidoEdit = $_POST['apellido'];
+    $telefonoEdit = $_POST['telefono'];
+    $emailEdit = $_POST['email'];
+
+    $query = "UPDATE usuarios SET nombre=:nombre, apellido=:apellido, imagen=:imagen, telefono=:telefono, email=:email WHERE id=:id";
+
+    try {
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':nombre', $nombreEdit, PDO::PARAM_STR);
+        $stmt->bindParam(':apellido', $apellidoEdit, PDO::PARAM_STR);
+        $stmt->bindParam(':imagen', $imagen, PDO::PARAM_STR);
+        $stmt->bindParam(':telefono', $telefonoEdit, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $emailEdit, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        echo "Error!", $e->getMessage();
+        die();
+    }
+
+    header("HTTP/1.1 200 OK");
+    echo "Registro actualizado!";
+    exit();
+}

@@ -128,7 +128,7 @@
     <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
 
     <!-- Scripts -->
-    <script type="text/javascript" src="./js/scripts.js?1.4"></script>
+    <script type="text/javascript" src="./js/scripts.js?1.6"></script>
 </body>
 
 </html>
