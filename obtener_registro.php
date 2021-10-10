@@ -21,6 +21,7 @@ try {
 $data = array();
 
 foreach ($result as $fila) {
+    $data['id'] = $_GET['idUsuario'];
     $data['nombre'] = $fila['nombre'];
     $data['apellido'] = $fila['apellido'];
     $data['telefono'] = $fila['telefono'];
