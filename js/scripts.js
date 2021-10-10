@@ -236,7 +236,7 @@ $(document).ready(function () {
   //EDITAR
   $('#datosUsuario').on('click', '.editar', function (e) {
     e.preventDefault();
-    var idUsuario = $(this).attr('id');
+    let idUsuario = $(this).attr('id');
     $.ajax({
       url: 'obtener_registro.php',
       method: 'get',
@@ -278,4 +278,44 @@ $(document).ready(function () {
   });
 
   //BORRAR
+  $('#datosUsuario').on('click', '.borrar', function (e) {
+    e.preventDefault();
+    let idUsuario = $(this).attr('id');
+    if (
+      confirm(
+        'Está seguro de que desea borrar este registro: ' + idUsuario + '?'
+      )
+    ) {
+      $.ajax({
+        type: 'get',
+        url: 'borrar.php',
+        data: { idUsuario: idUsuario },
+        dataType: 'json',
+        success: function (response) {
+          console.log(response);
+          datatable.ajax.reload();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          var errorMessage =
+            jqXHR.text + ': ' + jqXHR.textStatus + '- ' + textStatus;
+          console.log(errorMessage);
+          if (jqXHR.status === 0) {
+            alert('Not connect: Verify Network.');
+          } else if (jqXHR.status == 404) {
+            alert('Requested page not found [404]');
+          } else if (jqXHR.status == 500) {
+            alert('Internal Server Error [500].');
+          } else if (textStatus === 'parsererror') {
+            alert('Requested JSON parse failed.');
+          } else if (textStatus === 'timeout') {
+            alert('Time out error.');
+          } else if (textStatus === 'abort') {
+            alert('Ajax request aborted.');
+          } else {
+            alert('Uncaught Error: ' + jqXHR.responseText);
+          }
+        },
+      });
+    }
+  });
 });
