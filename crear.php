@@ -29,6 +29,7 @@ if ($_POST['operacion'] == 'Crear') {
         $result = $connection->lastInsertId();
     } catch (PDOException $e) {
         echo 'Error!', $e->getMessage();
+        die();
     }
 
     $input = array(
@@ -79,7 +80,11 @@ if ($_POST['operacion'] == 'Editar') {
         die();
     }
 
+    $updatedUser = array(
+        "updated_id" => $id
+    );
+
     header("HTTP/1.1 200 OK");
-    echo "Registro actualizado!";
+    echo json_encode($updatedUser);
     exit();
 }
