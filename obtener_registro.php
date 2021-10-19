@@ -3,6 +3,7 @@
 ini_set("display_errors", 1);
 include_once 'connection.php';
 include_once 'funciones.php';
+header("Access-Control-Allow-Origin: *");
 
 if (isset($_GET['idUsuario'])) {
     $id_usuario = $_GET['idUsuario'];

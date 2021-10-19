@@ -1,58 +1,3 @@
-// INICIALIZACIÓN DATATABLE
-var datatable = $('#datosUsuario').DataTable({
-  bLengthChange: false,
-  language: {
-    loadingRecords: 'Cargando datos...',
-    emptyTable: 'No se encontraron resultados',
-    paginate: {
-      next: 'Siguiente',
-      previous: 'Anterior',
-    },
-    search: 'Buscar:',
-    info: 'Mostrando _START_ - _END_ de _TOTAL_ de registros',
-  },
-  ordering: false,
-  order: [],
-  ajax: {
-    url: 'obtener_registros.php',
-    type: 'POST',
-    dataType: 'json',
-    dataSrc: function (response) {
-      if (response) {
-        return response;
-      } else {
-        alert('Error al cargar los datos');
-      }
-    },
-    error: function (jqXHR, textStatus, errorThrown) {
-      var errorMessage =
-        jqXHR.text + ': ' + jqXHR.textStatus + '- ' + textStatus;
-      console.log(errorMessage);
-      if (jqXHR.status === 0) {
-        alert('Not connect: Verify Network.');
-      } else if (jqXHR.status == 404) {
-        alert('Requested page not found [404]');
-      } else if (jqXHR.status == 500) {
-        alert('Internal Server Error [500].');
-      } else if (textStatus === 'parsererror') {
-        alert('Requested JSON parse failed.');
-      } else if (textStatus === 'timeout') {
-        alert('Time out error.');
-      } else if (textStatus === 'abort') {
-        alert('Ajax request aborted.');
-      } else {
-        alert('Uncaught Error: ' + jqXHR.responseText);
-      }
-    },
-  },
-  columnsDefs: [
-    {
-      targets: 0,
-      orderable: false,
-    },
-  ],
-});
-
 // CARGA DE LA PÁGINA
 $(document).ready(function () {
   $('#btnCrear').click(function (e) {
@@ -104,6 +49,7 @@ $(document).ready(function () {
 
   $('#formularioFiltro').submit(function (e) {
     e.preventDefault();
+    let columns = [];
     var selectValue = $('#selectNombre').val();
     $.ajax({
       method: 'get',
@@ -112,7 +58,49 @@ $(document).ready(function () {
       dataType: 'json',
       success: function (response) {
         console.log(response);
-        datatable.clear().rows.add(response).draw();
+
+        /**
+         * Obtiene los valores de las llaves del objeto response
+         * para cargar los nombres de las columnas dinámicamente
+         */
+        const columnNames = Object.keys(response[0]);
+        for (let i in columnNames) {
+          columns.push({
+            data: columnNames[i],
+            title: columnNames[i],
+          });
+        }
+
+        /**
+         * Inicializa la tabla Datatable.
+         * Lo hace acá para cargar los nombres de las columnas,
+         * en base a los valores obtenidos.
+         */
+        var datatable = $('#datosUsuario').DataTable({
+          bLengthChange: false,
+          language: {
+            loadingRecords: 'Cargando datos...',
+            emptyTable: 'No se encontraron resultados',
+            paginate: {
+              next: 'Siguiente',
+              previous: 'Anterior',
+            },
+            search: 'Buscar:',
+            info: 'Mostrando _START_ - _END_ de _TOTAL_ de registros',
+          },
+          ordering: false,
+          order: [],
+          destroy: true, //Destruye la tabla para poder instanciar una nueva cada vez que cambia el valor del select
+          data: response,
+          columns: columns,
+          columnsDefs: [
+            {
+              targets: 0,
+              orderable: false,
+            },
+          ],
+        });
+        //datatable.clear().rows.add(value).draw();
       },
     }).fail(function (jqXHR, textStatus, errorThrown) {
       var errorMessage =

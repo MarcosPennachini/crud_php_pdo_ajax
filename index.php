@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <div class="container mb-4">
+    <div class="container mb-4 pb-4">
         <h1 class="text-center display-5">CRUD con Php, PDO, Ajax y DataTables</h1>
         <div class="row my-4 justify-content-end">
             <div class="col-lg-2 col-xl-2">
@@ -57,19 +57,6 @@
             <div class="card-body">
                 <div class="table table-responsive table-bordered">
                     <table id="datosUsuario" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Teléfono</th>
-                                <th>Email</th>
-                                <th>Imágen</th>
-                                <th>Fecha creación</th>
-                                <th>Editar</th>
-                                <th>Borrar</th>
-                            </tr>
-                        </thead>
                     </table>
                 </div>
             </div>
@@ -122,7 +109,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- DataTables -->
     <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>

@@ -2,6 +2,7 @@
 //ini_set('display_errors', 1);
 include_once 'connection.php';
 include_once 'funciones.php';
+header("Access-Control-Allow-Origin: *");
 
 $query = "SELECT * FROM usuarios ";
 
@@ -35,17 +36,17 @@ foreach ($result as $fila) {
         $imagen = '';
     }
 
-    $sub_array = array();
-    $sub_array[] = $fila["id"];
-    $sub_array[] = $fila["nombre"];
-    $sub_array[] = $fila["apellido"];
-    $sub_array[] = $fila["telefono"];
-    $sub_array[] = $fila["email"];
-    $sub_array[] = $imagen;
-    $sub_array[] = $fila["fecha_creacion"];
-    $sub_array[] = '<button type="button" name="editar" id="' . $fila["id"] . '" class="btn btn-warning btn-xs editar">Editar</button>';
-    $sub_array[] = '<button type="button" name="borrar" id="' . $fila["id"] . '" class="btn btn-danger btn-xs borrar">Borrar</button>';
-    $datos[] = $sub_array;
+
+    $datos['id'] = $fila["id"];
+    $datos['nombre'] = $fila["nombre"];
+    $datos['apellido'] = $fila["apellido"];
+    $datos['telefono'] = $fila["telefono"];
+    $datos['email'] = $fila["email"];
+    $datos['imagen'] = $imagen;
+    $datos['fecha'] = $fila["fecha_creacion"];
+    $datos['editar'] = '<button type="button" name="editar" id="' . $fila["id"] . '" class="btn btn-warning btn-xs editar">Editar</button>';
+    $datos['borrar'] = '<button type="button" name="borrar" id="' . $fila["id"] . '" class="btn btn-danger btn-xs borrar">Borrar</button>';
+    $salida[] = $datos;
 }
 
-echo json_encode($datos);
+echo json_encode($salida);
